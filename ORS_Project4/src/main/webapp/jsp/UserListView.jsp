@@ -1,3 +1,5 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="javax.swing.text.html.HTML"%>
 <%@page import="com.rays.pro4.Model.RoleModel"%>
 <%@page import="com.rays.pro4.Model.UserModel"%>
 <%@page import="com.rays.pro4.Util.HTMLUtility"%>
@@ -61,6 +63,10 @@
 				List ulist = (List) request.getAttribute("LoginId");
 
 				ulist = (List) request.getAttribute("doba");
+				
+				
+	
+				
 
 				int next = DataUtility.getInt(request.getAttribute("nextlist").toString());
 			%>
@@ -88,6 +94,8 @@
 						<label>LoginId</font> :
 					</label> <input type="text" name="loginid" placeholder="Enter Login-Id"
 						value="<%=ServletUtility.getParameter("login", request)%>">
+
+
 						&emsp; <label>Role</font> :
 					</label> <%=HTMLUtility.getList("roleid", String.valueOf(bean.getRoleId()), rlist)%>
 						&nbsp; <%-- <%=HTMLUtility.getList("loginid", String.valueOf(bean.getRoleId()), ulist)%>
@@ -101,10 +109,25 @@
 						size="25" placeholder="Enter Dob "
 						value="<%=ServletUtility.getParameter("dob", request)%>">
 
+ 
+						<%-- <label>gender</font> :
+					</label> <input type="text" name="gender" placeholder="gender"
+						value="<%=ServletUtility.getParameter("gender", request)%>">
+  --%>
+<%--                     <label>gender
+                    <%
+                            HashMap map = new HashMap();
+                            map.put("Male", "Male");
+                            map.put("Female", "Female");
+
+                            String hlist = HTMLUtility.getList("gender", String.valueOf(bean.getGender()), map);
+    						%><%=hlist%>
+                    	</label> 
 
 
-
-						<input type="submit" name="operation"
+ --%>						<%--    <label>doba</label>
+                <%=HTMLUtility.getList("doba", String.valueOf(bean.getId()), ulist) %>
+ --%> <input type="submit" name="operation"
 						value="<%=UserListCtl.OP_SEARCH%>"> &nbsp; <input
 						type="submit" name="operation" value="<%=UserListCtl.OP_RESET%>">
 					</td>

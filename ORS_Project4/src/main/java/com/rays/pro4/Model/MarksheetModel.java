@@ -40,7 +40,7 @@ public class MarksheetModel {
 			System.out.println("Connection Succesfully Establidh");
 			;
 
-			PreparedStatement pstmt = conn.prepareStatement("select max(ID) from ST_MARKSHEET");
+			PreparedStatement pstmt = conn.prepareStatement("select max(ID) from st_marksheet");
 
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -85,7 +85,7 @@ public class MarksheetModel {
 			conn = JDBCDataSource.getConnection();
 			pk = nextPK();
 			conn.setAutoCommit(false);
-			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO ST_MARKSHEET VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO st_marksheet VALUES(?,?,?,?,?,?,?,?,?,?,?)");
 
 			pstmt.setInt(1, pk);
 			pstmt.setString(2, bean.getRollNo());
@@ -132,7 +132,7 @@ public class MarksheetModel {
 		try {
 			conn = JDBCDataSource.getConnection();
 			conn.setAutoCommit(false);
-			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM ST_MARKSHEET WHERE ID=?");
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM st_marksheet WHERE ID=?");
 
 			pstmt.setLong(1, bean.getId());
 			System.out.println("Delete Marksheet");
@@ -166,7 +166,7 @@ public class MarksheetModel {
 	public MarksheetBean findByRollNo(String rollNo) throws ApplicationException {
 		log.debug("Model findByRollNo Started");
 
-		StringBuffer sql = new StringBuffer("SELECT * FROM ST_MARKSHEET WHERE ROLL_NO=?");
+		StringBuffer sql = new StringBuffer("SELECT * FROM st_marksheet WHERE ROLL_NO=?");
 		MarksheetBean bean = null;
 		Connection conn = null;
 		try {
@@ -213,7 +213,7 @@ public class MarksheetModel {
 	public MarksheetBean findByPK(Long pk) throws ApplicationException {
 		log.debug("Model findByPK Started");
 
-		StringBuffer sql = new StringBuffer("SELECT * FROM ST_MARKSHEET WHERE ID=?");
+		StringBuffer sql = new StringBuffer("SELECT * FROM st_marksheet WHERE ID=?");
 
 		MarksheetBean bean = null;
 		Connection conn = null;
@@ -275,7 +275,7 @@ public class MarksheetModel {
 			conn = JDBCDataSource.getConnection();
 			conn.setAutoCommit(false);
 			PreparedStatement pstmt = conn.prepareStatement(
-					"UPDATE ST_MARKSHEET SET ROLL_NO=?,STUDENT_ID=?,NAME=?,PHYSICS=?,CHEMISTRY=?,MATHS=?,CREATED_BY=?,MODIFIED_BY=?,CREATED_DATETIME=?,MODIFIED_DATETIME=? WHERE ID=?");
+					"UPDATE st_marksheet SET ROLL_NO=?,STUDENT_ID=?,NAME=?,PHYSICS=?,CHEMISTRY=?,MATHS=?,CREATED_BY=?,MODIFIED_BY=?,CREATED_DATETIME=?,MODIFIED_DATETIME=? WHERE ID=?");
 			pstmt.setString(1, bean.getRollNo());
 			pstmt.setLong(2, bean.getStudentld());
 			pstmt.setString(3, bean.getName());
@@ -321,7 +321,7 @@ public class MarksheetModel {
 
 		log.debug("Model  search Started");
 
-		StringBuffer sql = new StringBuffer("select * from ST_MARKSHEET where 1=1");
+		StringBuffer sql = new StringBuffer("select * from st_marksheet where 1=1");
 
 		if (bean != null) {
 			System.out.println("service" + bean.getName());
@@ -406,7 +406,7 @@ public class MarksheetModel {
 		log.debug("Model  list Started");
 
 		ArrayList list = new ArrayList();
-		StringBuffer sql = new StringBuffer("select * from ST_MARKSHEET");
+		StringBuffer sql = new StringBuffer("select * from st_marksheet");
 		// if page size is greater than zero then apply pagination
 		if (pageSize > 0) {
 			// Calculate start record index
@@ -462,7 +462,7 @@ public class MarksheetModel {
 
 		ArrayList list = new ArrayList();
 		StringBuffer sql = new StringBuffer(
-				"SELECT ID,ROLL_NO,NAME,PHYSICS,CHEMISTRY,MATHS,(PHYSICS+CHEMISTRY+MATHS) as total from ST_MARKSHEET WHERE PHYSICS>=33 AND CHEMISTRY>=33 AND MATHS>=33 ORDER BY TOTAL DESC");
+				"SELECT ID,ROLL_NO,NAME,PHYSICS,CHEMISTRY,MATHS,(PHYSICS+CHEMISTRY+MATHS) as total from st_marksheet WHERE PHYSICS>=33 AND CHEMISTRY>=33 AND MATHS>=33 ORDER BY TOTAL DESC");
 
 		if (pageSize > 0) {
 			pageNo = (pageNo - 1) * pageSize;

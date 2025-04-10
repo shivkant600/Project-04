@@ -40,7 +40,7 @@ public class FacultyModel {
 		try {
 
 			conn = JDBCDataSource.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement("SELECT MAX(ID) FROM ST_FACULTY");
+			PreparedStatement pstmt = conn.prepareStatement("SELECT MAX(ID) FROM st_faculty");
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				pk = rs.getInt(1);
@@ -98,7 +98,7 @@ public class FacultyModel {
 			conn.setAutoCommit(false);
 			System.out.println("666666666666");
 			PreparedStatement pstmt = conn
-					.prepareStatement("INSERT INTO ST_FACULTY VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+					.prepareStatement("INSERT INTO st_faculty VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			pstmt.setInt(1, pk);
 			pstmt.setString(2, bean.getFirstName());
 			pstmt.setString(3, bean.getLastName());
@@ -152,7 +152,7 @@ public class FacultyModel {
 		try {
 			conn = JDBCDataSource.getConnection();
 			conn.setAutoCommit(false);
-			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM ST_FACULTY WHERE ID=?");
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM st_faculty WHERE ID=?");
 			pstmt.setLong(1, bean.getId());
 			pstmt.executeUpdate();
 			conn.commit();
@@ -191,7 +191,7 @@ public class FacultyModel {
 			conn = JDBCDataSource.getConnection();
 			conn.setAutoCommit(false);
 			PreparedStatement pstmt = conn.prepareStatement(
-					"UPDATE ST_FACULTY SET FIRST_NAME=?,LAST_NAME=?,GENDER=?,EMAIL_ID=?,MOBILE_NO=?,COLLEGE_ID=?,COLLEGE_NAME=?,COURSE_ID=?,COURSE_NAME=?,DOB=?,SUBJECT_ID=?,SUBJECT_NAME=?, CREATED_BY=?,MODIFIED_BY=?,CREATED_DATETIME=?,MODIFIED_DATETIME=? WHERE ID=?");
+					"UPDATE st_faculty SET FIRST_NAME=?,LAST_NAME=?,GENDER=?,EMAIL_ID=?,MOBILE_NO=?,COLLEGE_ID=?,COLLEGE_NAME=?,COURSE_ID=?,COURSE_NAME=?,DOB=?,SUBJECT_ID=?,SUBJECT_NAME=?, CREATED_BY=?,MODIFIED_BY=?,CREATED_DATETIME=?,MODIFIED_DATETIME=? WHERE ID=?");
 
 			pstmt.setString(1, bean.getFirstName());
 			pstmt.setString(2, bean.getLastName());
@@ -240,7 +240,7 @@ public class FacultyModel {
 
 	public FacultyBean findByPK(long pk) throws ApplicationException {
 		log.debug("Model findByPK Started");
-		StringBuffer sql = new StringBuffer("SELECT * FROM ST_FACULTY WHERE ID=?");
+		StringBuffer sql = new StringBuffer("SELECT * FROM st_faculty WHERE ID=?");
 		FacultyBean bean = null;
 		Connection conn = null;
 		try {
@@ -289,7 +289,7 @@ public class FacultyModel {
 
 	public FacultyBean findByEmailId(String Email) throws ApplicationException {
 		log.debug("Model findBy Email Started");
-		StringBuffer sql = new StringBuffer("SELECT * FROM ST_FACULTY WHERE EMAIL_id=?");
+		StringBuffer sql = new StringBuffer("SELECT * FROM st_faculty WHERE EMAIL_id=?");
 		FacultyBean bean = null;
 		Connection conn = null;
 		try {
@@ -352,7 +352,7 @@ public class FacultyModel {
 	public List list(int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model list Started");
 		ArrayList list = new ArrayList();
-		StringBuffer sql = new StringBuffer("select * from ST_FACULTY");
+		StringBuffer sql = new StringBuffer("select * from st_faculty");
 
 		if (pageSize > 0) {
 			pageNo = (pageNo - 1) * pageSize;
@@ -423,7 +423,7 @@ public class FacultyModel {
 	public List search(FacultyBean bean, int pageNo, int pageSize) throws ApplicationException {
 		log.debug("model search started");
 
-		StringBuffer sql = new StringBuffer("select * from ST_FACULTY WHERE 1=1");
+		StringBuffer sql = new StringBuffer("select * from st_faculty WHERE 1=1");
 		if (bean != null) {
 			if (bean.getId() > 0) {
 				sql.append(" AND id = " + bean.getId());

@@ -51,6 +51,10 @@ public class UserListCtl extends BaseCtl {
 			request.setAttribute("RoleList", rlist);
 			request.setAttribute("LoginId", ulist);
 
+			request.setAttribute("doba", ulist);
+
+		
+
 		} catch (ApplicationException e) {
 			e.printStackTrace();
 		}
@@ -73,6 +77,8 @@ public class UserListCtl extends BaseCtl {
 
 		// bean.setMobileNo(DataUtility.getString(request.getParameter("mobile")));
 		bean.setDob(DataUtility.getDate(request.getParameter("dob")));
+		bean.setGender(DataUtility.getString(request.getParameter("gender")));
+		// bean.setId(DataUtility.getLong(request.getParameter("doba")));
 
 		return bean;
 	}

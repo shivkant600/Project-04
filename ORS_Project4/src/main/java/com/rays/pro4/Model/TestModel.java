@@ -24,7 +24,7 @@ public class TestModel {
 
 		try {
 			conn = JDBCDataSource.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement("select max(ID) FROM ST_PROJECTTEST");
+			PreparedStatement pstmt = conn.prepareStatement("select max(ID) FROM st_projecttest");
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				pk = rs.getInt(1);
@@ -57,7 +57,7 @@ public class TestModel {
 
 			System.out.println(pk + " in ModelJDBC");
 			conn.setAutoCommit(false); // Begin transaction
-			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO ST_PROJECTTEST VALUES(?,?,?,?,?)");
+			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO st_projecttest VALUES(?,?,?,?,?)");
 			pstmt.setInt(1, pk);
 			pstmt.setString(2, bean.getTestName());
 			pstmt.setString(3, bean.getDescription());
